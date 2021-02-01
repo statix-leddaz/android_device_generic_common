@@ -14,6 +14,13 @@
 # limitations under the License.
 #
 
+# The system image of gsi_arm-userdebug is the GSI for devices with:
+# - ARM 32-bit userspace
+# - 64-bit binder interface
+# - system-as-root
+# - VNDK enforcement
+# - compatible property override enabled
+
 #
 # All components inherited here go to system image
 #
@@ -28,20 +35,17 @@ PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := true
 $(call inherit-product, device/generic/common/gsi_system_ext.mk)
 
 #
-# All components below go to product image
+# All components inherited here go to product image
 #
 $(call inherit-product, device/generic/common/gsi_product.mk)
 
 #
-# Special settings to skip mount product and system_ext on the device,
-# so this product can be tested isolated from those partitions.
+# Special settings for GSI releasing
 #
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
 
-# Needed to build mk_combined_img used for creating mixed GSI/emu image
-PRODUCT_SOONG_NAMESPACES += device/generic/goldfish
 
-PRODUCT_NAME := gsi_x86
-PRODUCT_DEVICE := generic_x86
+PRODUCT_NAME := gsi_arm
+PRODUCT_DEVICE := generic
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := GSI on x86
+PRODUCT_MODEL := GSI on ARM
