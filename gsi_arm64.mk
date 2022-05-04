@@ -45,6 +45,8 @@ $(call inherit-product, device/generic/common/gsi_product.mk)
 #
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
 
+# TODO(b/230107765): will be reverted once partners complete migration
+NEED_AIDL_NDK_PLATFORM_BACKEND := true
 
 PRODUCT_NAME := gsi_arm64
 PRODUCT_DEVICE := generic_arm64
