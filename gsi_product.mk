@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 The Android Open Source Project
+# Copyright (C) 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,25 +14,25 @@
 # limitations under the License.
 #
 
+# This makefile contains the product partition contents for CTS on
+# GSI compliance testing. Only add something here for this purpose.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/media_product.mk)
+
 PRODUCT_PACKAGES += \
-    Launcher3QuickStep \
-    Settings \
-    SystemUI \
-    ModuleMetadata \
-    frameworks-base-overlays \
+    Browser2 \
+    Camera2 \
+    Dialer \
     LatinIME \
-    Provision \
+    messaging \
 
 # Default AOSP sounds
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AllAudio.mk)
 
 # Additional settings used in all AOSP builds
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.ringtone=Ring_Synth_04.ogg \
-    ro.config.notification_sound=pixiedust.ogg \
-    ro.com.android.dataroaming=true \
+    ro.config.ringtone?=Ring_Synth_04.ogg \
+    ro.config.notification_sound?=pixiedust.ogg \
+    ro.com.android.dataroaming?=true \
 
-# Telephony:
-#   Provide a APN configuration to GSI product
 PRODUCT_COPY_FILES += \
     device/sample/etc/apns-full-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
