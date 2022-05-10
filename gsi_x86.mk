@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 The Android Open Source Project
+# Copyright (C) 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,28 +17,31 @@
 #
 # All components inherited here go to system image
 #
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_system.mk)
 
 # Enable mainline checking
-PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := true
 
 #
-# All components inherited here go to product image
+# All components inherited here go to system_ext image
 #
-$(call inherit-product, device/generic/common/mgsi/mgsi_product.mk)
+$(call inherit-product, device/generic/common/gsi_system_ext.mk)
 
 #
-# Special settings for GSI releasing
+# All components below go to product image
 #
-$(call inherit-product, device/generic/common/mgsi/mgsi_release.mk)
+$(call inherit-product, device/generic/common/gsi_product.mk)
 
-# Don't build super.img.
-PRODUCT_BUILD_SUPER_PARTITION := false
+#
+# Special settings to skip mount product and system_ext on the device,
+# so this product can be tested isolated from those partitions.
+#
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
 
+# Needed to build mk_combined_img used for creating mixed GSI/emu image
 PRODUCT_SOONG_NAMESPACES += device/generic/goldfish
 
-PRODUCT_NAME := mgsi_arm64
-PRODUCT_DEVICE := dummy_arm64
+PRODUCT_NAME := gsi_x86
+PRODUCT_DEVICE := generic_x86
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := Minimal GSI on arm64
+PRODUCT_MODEL := GSI on x86
