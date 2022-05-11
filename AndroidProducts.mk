@@ -1,5 +1,5 @@
 #
-# Copyright 2019 The Android Open-Source Project
+# Copyright (C) 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,17 @@
 #
 
 PRODUCT_MAKEFILES := \
-	device/generic/common/mgsi/csi_arm64.mk \
-	device/generic/common/mgsi/csi_x86.mk \
-	device/generic/common/mgsi/mgsi_arm.mk \
-	device/generic/common/mgsi/mgsi_arm64.mk \
-	device/generic/common/mgsi/mgsi_x86.mk \
-	device/generic/common/mgsi/mgsi_x86_64.mk \
+    $(LOCAL_DIR)/gki_arm64.mk \
+    $(LOCAL_DIR)/gki_x86_64.mk \
+    $(LOCAL_DIR)/gsi_arm.mk \
+    $(LOCAL_DIR)/gsi_arm64.mk \
+    $(LOCAL_DIR)/gsi_x86.mk \
+    $(LOCAL_DIR)/gsi_x86_64.mk \
+    $(LOCAL_DIR)/mgsi/csi_arm.mk \
+    $(LOCAL_DIR)/mgsi/csi_arm64.mk \
+    $(LOCAL_DIR)/mgsi/csi_x86.mk \
+    $(LOCAL_DIR)/mgsi/csi_x86_64.mk \
+    $(LOCAL_DIR)/mgsi/mgsi_arm.mk \
+    $(LOCAL_DIR)/mgsi/mgsi_arm64.mk \
+    $(LOCAL_DIR)/mgsi/mgsi_x86.mk \
+    $(LOCAL_DIR)/mgsi/mgsi_x86_64.mk
